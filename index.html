@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Roro 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{
+margin:0;
+background:linear-gradient(180deg,#050008,#120018,#000);
+color:white
+}
+section{
+min-height:100vh;
+padding:90px 20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center
+}
+.hero{background:radial-gradient(circle at top,#4a0070,#000)}
+.alt{background:#0d0014}
+h1{font-size:2.8rem;margin-bottom:20px}
+h2{font-size:2.1rem;margin-bottom:15px}
+p{max-width:800px;line-height:1.9;opacity:.9;font-size:1.05rem}
+
+input,button{
+padding:14px 30px;
+border-radius:35px;
+border:none;
+font-size:18px;
+margin:10px
+}
+button{
+background:crimson;
+color:white;
+cursor:pointer
+}
+button:hover{transform:scale(1.05)}
+
+.timeline{
+max-width:700px;
+text-align:right;
+border-right:2px solid crimson;
+padding-right:20px
+}
+.timeline div{
+margin:20px 0
+}
+
+.counter{
+margin-top:20px;
+font-size:1.1rem;
+color:#ffb6ff
+}
+
+.secret{
+margin-top:20px;
+background:rgba(255,255,255,.1);
+padding:25px;
+border-radius:25px;
+max-width:700px
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px 20px;
+border-radius:40px;
+text-decoration:none;
+font-size:16px
+}
+</style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script>
+const e = React.createElement;
+const loveStart = new Date("2023-01-01T00:00:00");
+
+function App(){
+const[auth,setAuth]=React.useState(false);
+const[time,setTime]=React.useState({});
+const[secret,setSecret]=React.useState(false);
+
+React.useEffect(()=>{
+if(auth){
+setInterval(()=>{
+const now=new Date();
+const diff=now-loveStart;
+setTime({
+years:Math.floor(diff/(1000*60*60*24*365)),
+months:Math.floor(diff/(1000*60*60*24*30)),
+days:Math.floor(diff/(1000*60*60*24)),
+hours:Math.floor((diff/(1000*60*60))%24),
+seconds:Math.floor((diff/1000)%60)
+});
+},1000);
+}
+},[auth]);
+
+if(!auth){
+return e("section",{className:"hero"},
+e("h1",null,"رورو 💖"),
+e("p",null,"اكتب الباسورد وافتح قصة عمر"),
+e("input",{id:"pass",type:"password"}),
+e("button",{onClick:()=>{
+if(document.getElementById("pass").value==="2007") setAuth(true);
+else alert("الباسورد غلط 💔");
+}},"دخول")
+)
+}
+
+return e("div",null,
+
+e("section",{className:"hero"},
+e("h1",null,"روان (رورو) 💖"),
+e("p",null,"دي مش صفحة… دي حكاية كاملة")
+),
+
+e("section",{className:"alt"},
+e("h2",null,"البداية"),
+e("p",null,"البداية كانت بسيطة جدًا، بس الإحساس كان واضح من أول لحظة.")
+),
+
+e("section",null,
+e("h2",null,"تفاصيل صغيرة"),
+e("p",null,"ضحكتها، طريقتها في الكلام، اهتمامها… حاجات بسيطة بس بتفرق.")
+),
+
+e("section",{className:"alt"},
+e("h2",null,"ليه روان؟"),
+e("p",null,"لأنها مش شبه حد، لأنها الأمان والونس والاختيار الصح.")
+),
+
+e("section",null,
+e("h2",null,"Timeline الحب"),
+e("div",{className:"timeline"},
+e("div",null,"📍 أول يوم حسيت إن في حاجة مختلفة"),
+e("div",null,"📍 أول مرة أقول فيها بحبك"),
+e("div",null,"📍 كل مرة اخترتك من جديد")
+)
+),
+
+e("section",{className:"alt"},
+e("h2",null,"قد إيه بحبك؟"),
+e("div",{className:"counter"},
+`❤️ ${time.years||0} سنة – ${time.months||0} شهر`,
+e("br"),
+`⏳ ${time.days||0} يوم – ${time.hours||0} ساعة – ${time.seconds||0} ثانية`
+)
+),
+
+e("section",null,
+e("h2",null,"وعود"),
+e("p",null,"وعد إني أفضل جنبك، أسمعك، وأحبك في كل الظروف.")
+),
+
+e("section",{className:"alt"},
+e("h2",null,"رسالة خاصة"),
+e("p",null,"إنتي مش مجرد حب… إنتي حياة كاملة."),
+e("button",{onClick:()=>setSecret(!secret)},"😏 اضغطي هنا"),
+secret && e("div",{className:"secret"},"لو رجع بيا الزمن، أختارك تاني وتالت ومن غير تردد 💖")
+),
+
+e("section",null,
+e("h2",null,"أحلام قدّام"),
+e("p",null,"ضحك، نجاح، تعب، وكل ده وإحنا مع بعض.")
+),
+
+e("section",{className:"alt"},
+e("h1",null,"نهاية الصفحة"),
+e("p",null,"بس مفيش نهاية للحكاية دي")
+),
+
+e("a",{
+className:"whatsapp",
+href:"https://wa.me/201011069156?text=روان%20(رورو)%20💖%0Aدخلت%20الموقع%20وحسيت%20قد%20إيه%20أنا%20بحبك%20🥺❤️",
+target:"_blank"
+},"💬 واتساب")
+)
+}
+
+ReactDOM.render(e(App),document.getElementById("root"));
+</script>
+</body>
+</html>
